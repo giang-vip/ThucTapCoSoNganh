@@ -1,0 +1,95 @@
+=== CAC CA THE SAU KHI TIEN HOA ===
+v1 chon: Vat3 Vat4 Vat6 Vat8 Vat9  | Tong gia tri = 70, Tong khoi luong = 36 (QUA TAI)
+v2 chon: Vat8 Vat9  | Tong gia tri = 27, Tong khoi luong = 13
+v3 chon: Vat3 Vat4 Vat6 Vat7 Vat8 Vat9  | Tong gia tri = 76, Tong khoi luong = 42 (QUA TAI)
+v4 chon: Vat3 Vat5 Vat6 Vat8 Vat9  | Tong gia tri = 76, Tong khoi luong = 38 (QUA TAI)
+v5 chon: Vat3 Vat4 Vat6  | Tong gia tri = 43, Tong khoi luong = 23 (QUA TAI)
+v6 chon: Vat9  | Tong gia tri = 11, Tong khoi luong = 7
+v7 chon: Vat1 Vat3 Vat4 Vat5 Vat6 Vat8  | Tong gia tri = 84, Tong khoi luong = 45 (QUA TAI)
+v8 chon: Vat6 Vat8 Vat9  | Tong gia tri = 43, Tong khoi luong = 21 (QUA TAI)
+v9 chon: Vat1 Vat3 Vat4 Vat6 Vat7 Vat8 Vat9  | Tong gia tri = 86, Tong khoi luong = 50 (QUA TAI)
+v10 chon: Vat3 Vat6  | Tong gia tri = 34, Tong khoi luong = 17
+
+
+=== CA THE TOT NHAT ===
+v10 chon: Vat3 Vat6 
+Tong gia tri = 34
+Tong khoi luong = 17
+Do thich nghi (Fitness) = 34
+
+=== CAC CA THE SAU KHI TIEN HOA ===
+v1 chon: Vat1 Vat6 Vat9  | Tong gia tri = 35, Tong khoi luong = 19
+v2 chon: Vat1 Vat3 Vat5 Vat9  | Tong gia tri = 34, Tong khoi luong = 28 (QUA TAI)
+v3 chon: Vat1 Vat3 Vat6 Vat9  | Tong gia tri = 41, Tong khoi luong = 26 (QUA TAI)
+v4 chon: Vat1 Vat2 Vat4 Vat9 Vat10  | Tong gia tri = 56, Tong khoi luong = 31 (QUA TAI)
+v5 chon: Vat6 Vat9 Vat10  | Tong gia tri = 30, Tong khoi luong = 18
+v6 chon: Vat2 Vat3 Vat5 Vat9 Vat10  | Tong gia tri = 42, Tong khoi luong = 32 (QUA TAI)
+v7 chon: Vat3 Vat5 Vat7 Vat8 Vat10  | Tong gia tri = 50, Tong khoi luong = 38 (QUA TAI)
+v8 chon: Vat1 Vat2 Vat3 Vat5 Vat7 Vat9 Vat10  | Tong gia tri = 74, Tong khoi luong = 48 (QUA TAI)
+v9 chon: Vat1 Vat3 Vat6 Vat7  | Tong gia tri = 53, Tong khoi luong = 29 (QUA TAI)
+v10 chon: Vat3 Vat6 Vat7 Vat9 Vat10  | Tong gia tri = 53, Tong khoi luong = 33 (QUA TAI)
+
+
+=== CA THE TOT NHAT ===
+v1 chon: Vat1 Vat6 Vat9 
+Tong gia tri = 35
+Tong khoi luong = 19
+Do thich nghi (Fitness) = 35
+
+=== CAC CA THE SAU KHI TIEN HOA ===
+v1 chon: Vat4 Vat5 Vat6 Vat8 Vat10  | Tong gia tri = 43, Tong khoi luong = 33 (QUA TAI)
+v2 chon: Vat1 Vat5 Vat6 Vat7 Vat8 Vat10  | Tong gia tri = 55, Tong khoi luong = 40 (QUA TAI)
+v3 chon: Vat4 Vat5 Vat6 Vat7 Vat10  | Tong gia tri = 51, Tong khoi luong = 33 (QUA TAI)
+v4 chon: Vat1 Vat5 Vat6 Vat7 Vat8 Vat10  | Tong gia tri = 55, Tong khoi luong = 40 (QUA TAI)
+v5 chon: Vat2 Vat4 Vat5 Vat6 Vat7 Vat8 Vat10  | Tong gia tri = 64, Tong khoi luong = 51 (QUA TAI)
+v6 chon: Vat5 Vat6 Vat7  | Tong gia tri = 37, Tong khoi luong = 20
+v7 chon: Vat2 Vat4 Vat6 Vat7 Vat8  | Tong gia tri = 49, Tong khoi luong = 40 (QUA TAI)
+v8 chon: Vat1 Vat4 Vat5 Vat6 Vat7 Vat10  | Tong gia tri = 56, Tong khoi luong = 40 (QUA TAI)
+v9 chon: Vat1 Vat5 Vat6 Vat7 Vat8 Vat10  | Tong gia tri = 55, Tong khoi luong = 40 (QUA TAI)
+v10 chon: Vat1 Vat4 Vat6 Vat7 Vat10  | Tong gia tri = 49, Tong khoi luong = 34 (QUA TAI)
+
+
+=== CA THE TOT NHAT ===
+v6 chon: Vat5 Vat6 Vat7 
+Tong gia tri = 37
+Tong khoi luong = 20
+Do thich nghi (Fitness) = 37
+
+=== CAC CA THE SAU KHI TIEN HOA ===
+v1 chon: Vat1 Vat2 Vat3 Vat4 Vat5 Vat6 Vat9 Vat10  | Tong gia tri = 52, Tong khoi luong = 314 (QUA TAI)
+v2 chon: Vat1 Vat2 Vat3 Vat4 Vat6 Vat7 Vat8 Vat9 Vat10  | Tong gia tri = 50, Tong khoi luong = 325 (QUA TAI)
+v3 chon: Vat1 Vat2 Vat3 Vat4 Vat5 Vat10  | Tong gia tri = 45, Tong khoi luong = 208 (QUA TAI)
+v4 chon: Vat1 Vat2 Vat3 Vat4 Vat5 Vat6 Vat7 Vat9 Vat10  | Tong gia tri = 54, Tong khoi luong = 322 (QUA TAI)
+v5 chon: Vat1 Vat3 Vat4 Vat5 Vat6 Vat9 Vat10  | Tong gia tri = 45, Tong khoi luong = 258 (QUA TAI)
+v6 chon: Vat1 Vat3 Vat5 Vat6 Vat7 Vat9 Vat10  | Tong gia tri = 37, Tong khoi luong = 261 (QUA TAI)
+v7 chon: Vat1 Vat3 Vat4 Vat5 Vat7 Vat8 Vat10  | Tong gia tri = 40, Tong khoi luong = 169 (QUA TAI)
+v8 chon: Vat1 Vat2 Vat3 Vat4 Vat6 Vat7 Vat8 Vat9 Vat10  | Tong gia tri = 50, Tong khoi luong = 325 (QUA TAI)
+v9 chon: Vat4 Vat6 Vat8 Vat10  | Tong gia tri = 23, Tong khoi luong = 86 (QUA TAI)
+v10 chon: Vat2 Vat3 Vat4 Vat5 Vat6 Vat7 Vat8 Vat9 Vat10  | Tong gia tri = 49, Tong khoi luong = 329 (QUA TAI)
+
+
+=== CA THE TOT NHAT ===
+v4 chon: Vat1 Vat2 Vat3 Vat4 Vat5 Vat6 Vat7 Vat9 Vat10 
+Tong gia tri = 54
+Tong khoi luong = 322
+Do thich nghi (Fitness) = -99946
+
+=== CAC CA THE SAU KHI TIEN HOA ===
+v1 chon: Vat1 Vat3 Vat4 Vat5 Vat6 Vat8 Vat9  | Tong gia tri = 830, Tong khoi luong = 464 (QUA TAI)
+v2 chon: Vat1 Vat2 Vat5 Vat6 Vat8 Vat9 Vat10  | Tong gia tri = 733, Tong khoi luong = 408 (QUA TAI)
+v3 chon: Vat1 Vat2 Vat3 Vat4 Vat5 Vat8 Vat9 Vat10  | Tong gia tri = 915, Tong khoi luong = 433 (QUA TAI)
+v4 chon: Vat1 Vat2 Vat5 Vat6 Vat7 Vat8 Vat9 Vat10  | Tong gia tri = 890, Tong khoi luong = 441 (QUA TAI)
+v5 chon: Vat2 Vat3 Vat5 Vat6 Vat8 Vat9 Vat10  | Tong gia tri = 770, Tong khoi luong = 385 (QUA TAI)
+v6 chon: Vat1 Vat3 Vat5 Vat6 Vat7 Vat9  | Tong gia tri = 829, Tong khoi luong = 307 (QUA TAI)
+v7 chon: Vat1 Vat2 Vat4 Vat5 Vat6 Vat7 Vat9  | Tong gia tri = 1009, Tong khoi luong = 422 (QUA TAI)
+v8 chon: Vat1 Vat2 Vat4 Vat5 Vat9 Vat10  | Tong gia tri = 780, Tong khoi luong = 308 (QUA TAI)
+v9 chon: Vat1 Vat2 Vat3 Vat4 Vat6 Vat8 Vat9 Vat10  | Tong gia tri = 832, Tong khoi luong = 514 (QUA TAI)
+v10 chon: Vat1 Vat2 Vat3 Vat4 Vat5 Vat7 Vat8 Vat9 Vat10  | Tong gia tri = 1072, Tong khoi luong = 466 (QUA TAI)
+
+
+=== CA THE TOT NHAT ===
+v10 chon: Vat1 Vat2 Vat3 Vat4 Vat5 Vat7 Vat8 Vat9 Vat10 
+Tong gia tri = 1072
+Tong khoi luong = 466
+Do thich nghi (Fitness) = -98928
+

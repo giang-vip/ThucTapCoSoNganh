@@ -53,7 +53,16 @@ public class Population {
     public Individual getIndividual(int index) {
         return individuals.get(index);
     }
-
+    // lấy cá thể có fitness cao nhất trong quần thể
+    public Individual getBestIndividual() {
+        Individual best = individuals.get(0);  // lấy cá thể đầu tiên làm mốc
+        for (Individual ind : individuals) {
+            if (ind.getFitness() > best.getFitness()) {
+                best = ind;
+            }
+        }
+        return best;
+    }
     // Setter để thay thế cá thể tại vị trí index
     public void setIndividual(int index, Individual ind) {
         individuals.set(index, ind);

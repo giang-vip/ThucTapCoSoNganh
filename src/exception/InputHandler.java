@@ -12,7 +12,7 @@ public class InputHandler {
             String input = scanner.nextLine().trim();
             try {
                 int value = Integer.parseInt(input);
-                if (value > 0) {
+                if (value >0) {
                     return value;
                 } else {
                     System.out.println("Lỗi: Giá trị phải lớn hơn 0! Vui lòng nhập lại.\n");

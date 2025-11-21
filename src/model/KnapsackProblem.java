@@ -16,6 +16,10 @@ public class KnapsackProblem {
         this.maxWeight = maxWeight;
     }
 
+    // trả về số lượng phần vật phẩm
+    public int getNumItems() {
+        return values.length;  // hoặc weights.length, cả 2 đều bằng nhau
+    }
 
     // Getter để lấy mảng giá trị
     public int[] getValues() {

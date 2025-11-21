@@ -42,7 +42,10 @@ public class GeneticAlgorithm {
         }
 
         // Vòng lặp tiến hóa
+        int m =1;
         while (true) {
+
+            System.out.println("LẦN: " +m );
             // Bước 1: Tính fitness cho quần thể
             population.calculateFitnessForAll();
 
@@ -65,6 +68,9 @@ public class GeneticAlgorithm {
 
             // Bước 5: Đột biến
             mutationOperator.performMutation(population);
+
+            // tăng chỉ số đêm
+            m++;
         }
     }
 

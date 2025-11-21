@@ -1,25 +1,7 @@
 // Lớp chính để chạy chương trình, nhập dữ liệu và khởi chạy GA
-import algorithm.GeneticAlgorithm;
-import algorithm.StoppingCriteria;
-import genetic.ICrossoverOperator;
-import genetic.IMutationOperator;
-import genetic.ISelectionOperator;
-import genetic.implement.BitFlipMutation;
-import genetic.implement.RankThresholdSelection;
-import genetic.implement.UniformCrossover;
 import input.KnapsackRunner;
-import model.KnapsackProblem;
-import model.Population;
-import util.DataGenerator;
 import exception.InputHandler;
-import util.Logger;
-import util.ResultDisplay;
-
 import java.util.Scanner;
-
-import static input.KnapsackRunner.chayCheDoNhapTay;
-import static input.KnapsackRunner.chayCheDoSinhNgauNhien;
-
 
 public class Main {
     public static void main(String[] args) {

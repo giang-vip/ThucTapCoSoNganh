@@ -21,6 +21,7 @@ public class DataGenerator {
         System.out.println();
     }
 
+
     // In thông tin bài toán đẹp đẹp
     public static void displayProblem(int[] values, int[] weights, int maxWeight) {
         System.out.println("\n=== THÔNG TIN BÀI TOÁN CÁI TÚI ===");

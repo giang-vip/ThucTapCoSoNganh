@@ -1,73 +1,141 @@
-package util;// Lớp hiển thị kết quả và ghi vào file
+package util;
+
+import algorithm.GeneticAlgorithm;
 import model.Individual;
 import model.KnapsackProblem;
 import model.Population;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.List;
 
 public class ResultDisplay {
-    // Phương thức hiển thị toàn bộ quần thể sau tiến hóa
-    public static void displayPopulation(Population population, KnapsackProblem problem,int generations) {
 
-        System.out.println("\n=== CAC CA THE SAU KHI TIEN HOA ===");
+    // BẢNG THEO DÕI TIẾN HÓA – SIÊU ĐẸP, SIÊU KHOA HỌC
+    public static void displayEvolutionTable(GeneticAlgorithm ga, KnapsackProblem problem) {
+        System.out.println("\n" + "█".repeat(140));
+        System.out.println("           BẢNG THEO DÕI QUÁ TRÌNH TIẾN HÓA THUẬT TOÁN DI TRUYỀN (0/1 KNAPSACK)");
+        System.out.println("█".repeat(140));
 
+        // Tiêu đề bảng – mở rộng để chứa thêm 2 cột mới
+        System.out.printf("%-6s %-10s %-50s %-12s %-10s %-15s %-12s %-15s%n",
+                "Thế hệ", "Fitness", "Vật được chọn", "Tổng giá trị", "Tổng KL", "KL/Max", "Cải thiện?", "Stagnation");
+        System.out.println("─".repeat(140));
 
-        for (int i = 0; i < population.size(); i++) {
-            Individual ind = population.getIndividual(i);
-            System.out.print("v" + (i + 1) + " chon: ");
-            int tongGiaTri = 0;
-            int tongKhoiLuong = 0;
+        int maxWeight = problem.getMaxWeight();
 
-            // Duyệt genes để tính tổng và in vật phẩm được chọn
-            for (int j = 0; j < ind.getGenes().length; j++) {
-                if (ind.getGenes()[j] == 1) {
-                    System.out.print("Vat" + (j + 1) + " ");
-                    tongGiaTri += problem.getValues()[j];
-                    tongKhoiLuong += problem.getWeights()[j];
+        for (int i = 0; i < ga.getGenerationLog().size(); i++) {
+            int gen = ga.getGenerationLog().get(i);
+            double fitness = ga.getBestFitnessLog().get(i);
+            Individual best = ga.getBestIndividualLog().get(i);
+            boolean improved = ga.getImprovedLog().get(i);
+            int noImpCount = ga.getNoImprovementCountLog().get(i);
+
+            // Tính tổng giá trị và tổng khối lượng thực tế của cá thể tốt nhất ở thế hệ này
+            int totalValue = 0;
+            int totalWeight = 0;
+            StringBuilder items = new StringBuilder();
+
+            for (int j = 0; j < best.getGenes().length; j++) {
+                if (best.getGenes()[j] == 1) {
+                    items.append("V").append(j + 1).append(" ");
+                    totalValue += problem.getValues()[j];
+                    totalWeight += problem.getWeights()[j];
                 }
             }
+            if (items.length() == 0) items.append("Rỗng");
 
-            // Kiểm tra vượt trọng lượng
-            String trangThai = (tongKhoiLuong > problem.getMaxWeight()) ? " (QUA TAI)" : "";
-            System.out.println(" | Tong gia tri = " + tongGiaTri +
-                    ", Tong khoi luong = " + tongKhoiLuong + trangThai);
+            // Cắt ngắn nếu quá dài (tránh làm lệch bảng)
+            String itemsStr = items.toString();
+            if (itemsStr.length() > 48) {
+                itemsStr = itemsStr.substring(0, 45) + "...";
+            }
+
+            // Trạng thái trọng lượng
+            String weightStatus = totalWeight <= maxWeight ?
+                    totalWeight + "/" + maxWeight :
+                    "⚠ " + totalWeight + "/" + maxWeight + " (vượt!)";
+
+            // Cải thiện?
+            String status = improved ? "CÓ ↑" : "Không";
+
+            // In dòng – căn chỉnh chuẩn như Excel
+            System.out.printf("%-6d %-10.0f %-50s %-12d %-10d %-15s %-12s %-15d%n",
+                    gen,
+                    fitness,
+                    itemsStr,
+                    totalValue,
+                    totalWeight,
+                    weightStatus,
+                    status,
+                    noImpCount);
         }
+
+        // Dòng cuối cùng – tóm tắt kết quả cuối cùng
+        Individual finalBest = ga.getBestIndividualLog().get(ga.getBestIndividualLog().size() - 1);
+        int finalValue = 0, finalWeight = 0;
+        for (int j = 0; j < finalBest.getGenes().length; j++) {
+            if (finalBest.getGenes()[j] == 1) {
+                finalValue += problem.getValues()[j];
+                finalWeight += problem.getWeights()[j];
+            }
+        }
+
+        System.out.println("█".repeat(140));
+        System.out.printf("HOÀN TẤT SAU %d THẾ HỆ | FITNESS TỐI ƯU: %.0f | GIÁ TRỊ: %d | KHỐI LƯỢNG: %d/%d%n",
+                ga.getGenerationLog().size(),
+                ga.getBestFitnessLog().get(ga.getBestFitnessLog().size() - 1),
+                finalValue, finalWeight, maxWeight);
+        System.out.println("█".repeat(140));
     }
 
-    // Phương thức hiển thị cá thể tốt nhất
-    public static void displayBest(Population population, KnapsackProblem problem) {
+    // Bonus: hàm in nhanh cá thể tốt nhất (gọn nhẹ, vẫn giữ lại nếu bạn thích)
+    public static void displayBestOnly(Population pop, KnapsackProblem problem) {
+        Individual best = pop.getBestIndividual();
+        int value = 0, weight = 0;
+        System.out.print("\nKẾT QUẢ TỐI ƯU: ");
+        for (int i = 0; i < best.getGenes().length; i++) {
+            if (best.getGenes()[i] == 1) {
+                System.out.print("V" + (i+1) + " ");
+                value += problem.getValues()[i];
+                weight += problem.getWeights()[i];
+            }
+        }
+        System.out.printf("→ Giá trị = %d, Khối lượng = %d/%d, Fitness = %.0f%n",
+                value, weight, problem.getMaxWeight(), best.getFitness());
+    }
+    // Hiện thị cá thể tốt nhất
+    // HIỂN THỊ CÁ THỂ TỐT NHẤT THỰC SỰ TRONG TOÀN BỘ QUÁ TRÌNH (KHÔNG PHẢI THẾ HỆ CUỐI!)
+    public static void displayBest(GeneticAlgorithm ga, KnapsackProblem problem) {
+        // Tìm index của fitness cao nhất trong lịch sử
+        List<Double> fitnessLog = ga.getBestFitnessLog();
         int bestIndex = 0;
-        int bestFitness = Integer.MIN_VALUE;
-        // Tìm cá thể có fitness cao nhất
-        for (int i = 0; i < population.size(); i++) {
-            int f = population.getIndividual(i).getFitness();
-            if (f > bestFitness) {
-                bestFitness = f;
+        double bestFit = fitnessLog.get(0);
+
+        for (int i = 1; i < fitnessLog.size(); i++) {
+            double f = fitnessLog.get(i);
+            if (f > bestFit || (f >= 0 && bestFit < 0)) {  // ưu tiên khả thi
+                bestFit = f;
                 bestIndex = i;
             }
         }
 
-        Individual bestInd = population.getIndividual(bestIndex);
+        Individual trueBest = ga.getBestIndividualLog().get(bestIndex);
+        int generationFound = ga.getGenerationLog().get(bestIndex);
 
-        System.out.println("\n=== CA THE TOT NHAT ===");
-        System.out.print("v" + (bestIndex + 1) + " chon: ");
+        System.out.println("\n=== CÁ THỂ TỐT NHẤT (TOÀN BỘ QUÁ TRÌNH TIẾN HÓA) ===");
+        System.out.println("→ Xuất hiện lần đầu ở thế hệ: " + generationFound);
+        System.out.print("Chọn: ");
+        int totalValue = 0, totalWeight = 0;
 
-        int tongGiaTri = 0;
-        int tongKhoiLuong = 0;
-
-        // Duyệt genes để tính tổng và in vật phẩm
-        for (int j = 0; j < bestInd.getGenes().length; j++) {
-            if (bestInd.getGenes()[j] == 1) {
-                System.out.print("Vat" + (j + 1) + " ");
-                tongGiaTri += problem.getValues()[j];
-                tongKhoiLuong += problem.getWeights()[j];
+        for (int j = 0; j < trueBest.getGenes().length; j++) {
+            if (trueBest.getGenes()[j] == 1) {
+                System.out.print("Vật" + (j + 1) + " ");
+                totalValue += problem.getValues()[j];
+                totalWeight += problem.getWeights()[j];
             }
         }
 
-        System.out.println("\nTong gia tri = " + tongGiaTri);
-        System.out.println("Tong khoi luong = " + tongKhoiLuong);
-        System.out.println("Do thich nghi (Fitness) = " + bestFitness);
-
+        System.out.println("\n→ Tổng giá trị: " + totalValue);
+        System.out.println("→ Tổng khối lượng: " + totalWeight + " / " + problem.getMaxWeight());
+        System.out.printf("→ Fitness tối ưu: %.0f%n", bestFit);
     }
 }

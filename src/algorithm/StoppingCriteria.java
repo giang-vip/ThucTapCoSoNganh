@@ -6,8 +6,6 @@ public class StoppingCriteria {
     private int currentGeneration;
     // Số thế hệ tối đa
     private int maxGenerations;
-    // Ngưỡng fitness cần đạt
-    private double fitnessThreshold;
     // Số lần không cải thiện tối đa
     private int maxNoImprovement;
     // Fitness tốt nhất đạt được
@@ -16,9 +14,8 @@ public class StoppingCriteria {
     private int noImprovementCount;
 
     // Constructor khởi tạo các tham số điều kiện dừng
-    public StoppingCriteria(int maxGenerations, double fitnessThreshold, int maxNoImprovement) {
+    public StoppingCriteria(int maxGenerations, int maxNoImprovement) {
         this.maxGenerations = maxGenerations;
-        this.fitnessThreshold = fitnessThreshold;
         this.maxNoImprovement = maxNoImprovement;
         this.currentGeneration = 0;
         this.bestFitness = Double.MIN_VALUE;
@@ -43,11 +40,6 @@ public class StoppingCriteria {
             return true;
         }
 
-        // Kiểm tra đạt ngưỡng fitness
-        if (bestFitness >= fitnessThreshold) {
-            System.out.println("Dung: Fitness da dat nguong yeu cau (" + bestFitness + ")");
-            return true;
-        }
 
         // Kiểm tra số lần không cải thiện
         if (noImprovementCount >= maxNoImprovement) {
@@ -66,5 +58,9 @@ public class StoppingCriteria {
     // Getter để lấy thế hệ hiện tại
     public int getCurrentGeneration() {
         return currentGeneration;
+    }
+    // trả về số lần ko cải thiện của thuật toán
+    public int getNoImprovementCount() {
+        return noImprovementCount;
     }
 }

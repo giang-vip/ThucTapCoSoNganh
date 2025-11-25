@@ -54,14 +54,27 @@ public class Population {
         return individuals.get(index);
     }
     // lấy cá thể có fitness cao nhất trong quần thể
+    /**
+     * LẤY CÁ THỂ TỐT NHẤT – ĐÃ SỬA HOÀN HẢO CHO BÀI KNAPSACK
+     * Ưu tiên: Giải KHẢ THI luôn thắng giải không khả thi
+     */
     public Individual getBestIndividual() {
-        Individual best = individuals.get(0);  // lấy cá thể đầu tiên làm mốc
-        for (Individual ind : individuals) {
-            if (ind.getFitness() > best.getFitness()) {
-                best = ind;
-            }
-        }
-        return best;
+        // Nếu population rỗng thì trả về null hoặc cá thể đầu (tùy bạn)
+        if (individuals.isEmpty()) return null;
+
+        return individuals.stream()
+                .max((a, b) -> {
+                    double fa = a.getFitness();
+                    double fb = b.getFitness();
+
+                    // Giải khả thi (fitness >= 0) luôn thắng giải bị phạt (fitness < 0)
+                    if (fa >= 0 && fb < 0) return 1;
+                    if (fa < 0 && fb >= 0) return -1;
+
+                    // Cùng loại (cùng khả thi hoặc cùng không khả thi) → so fitness bình thường
+                    return Double.compare(fa, fb);
+                })
+                .orElse(individuals.get(0)); // phòng trường hợp rỗng (không bao giờ xảy ra)
     }
     // Setter để thay thế cá thể tại vị trí index
     public void setIndividual(int index, Individual ind) {

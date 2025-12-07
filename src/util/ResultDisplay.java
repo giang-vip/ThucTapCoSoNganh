@@ -80,10 +80,10 @@ public class ResultDisplay {
         }
 
         System.out.println("█".repeat(140));
-        System.out.printf("HOÀN TẤT SAU %d THẾ HỆ | FITNESS TỐI ƯU: %.0f | GIÁ TRỊ: %d | KHỐI LƯỢNG: %d/%d%n",
-                ga.getGenerationLog().size(),
-                ga.getBestFitnessLog().get(ga.getBestFitnessLog().size() - 1),
-                finalValue, finalWeight, maxWeight);
+        System.out.printf("HOÀN TẤT SAU %d THẾ HỆ  %n",
+                ga.getGenerationLog().size());
+//                ga.getBestFitnessLog().get(ga.getBestFitnessLog().size() - 1),
+//                finalValue, finalWeight, maxWeight);
         System.out.println("█".repeat(140));
     }
 

@@ -12,6 +12,7 @@ import genetic.implement.UniformCrossover;
 import model.KnapsackProblem;
 import model.Population;
 import util.DataGenerator;
+import util.FitnessChart;
 import util.Logger;
 import util.ResultDisplay;
 
@@ -175,5 +176,7 @@ public class KnapsackRunner {
         ResultDisplay.displayBest(ga, problem);
 
         Logger.logFullResult(problem, ga, ga.getStoppingCriteria().getCurrentGeneration());
+        // DÒNG THẦN THÁNH – VẼ ĐỒ THỊ ĐẸP LUNG LINH
+        FitnessChart.showChart(ga);
     }
 }

@@ -39,8 +39,6 @@ public class StoppingCriteria {
             System.out.println("Dung: Da dat so the he toi da (" + currentGeneration + ")");
             return true;
         }
-
-
         // Kiểm tra số lần không cải thiện
         if (noImprovementCount >= maxNoImprovement) {
             System.out.println("Dung: Qua nhieu lan khong cai thien (" + noImprovementCount + ")");

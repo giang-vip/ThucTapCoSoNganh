@@ -2,6 +2,7 @@
   <library name="jcommon-1.0.23">
     <CLASSES>
       <root url="jar://$USER_HOME$/Downloads/jcommon-1.0.23.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../ThuVien/jcommon-1.0.23.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

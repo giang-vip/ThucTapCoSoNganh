@@ -7,14 +7,15 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jfreechart-1.5.4" level="project" />
-    <orderEntry type="library" name="jcommon-1.0.23" level="project" />
     <orderEntry type="library" name="commons-collections4-4.4" level="project" />
-    <orderEntry type="library" name="poi-ooxml-5.2.3" level="project" />
-    <orderEntry type="library" name="xmlbeans-5.1.1" level="project" />
     <orderEntry type="library" name="commons-compress-1.21" level="project" />
     <orderEntry type="library" name="commons-io-2.21.0" level="project" />
+    <orderEntry type="library" name="jcommon-1.0.23" level="project" />
+    <orderEntry type="library" name="jfreechart-1.5.4" level="project" />
     <orderEntry type="library" name="log4j-1.2-api-2.25.3" level="project" />
+    <orderEntry type="library" name="poi-ooxml-5.2.3" level="project" />
     <orderEntry type="library" name="slf4j-api-2.0.13" level="project" />
+    <orderEntry type="library" name="xmlbeans-5.1.1" level="project" />
+    <orderEntry type="library" name="slf4j-simple-2.0.16" level="project" />
   </component>
 </module>

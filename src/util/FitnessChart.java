@@ -227,7 +227,14 @@ public class FitnessChart extends ApplicationFrame {
         SwingUtilities.invokeLater(() -> {
             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
             for (int i = 0; i < testNames.size(); i++) {
-                dataset.addValue(times.get(i), "Thời gian chạy", testNames.get(i));
+                String name = testNames.get(i);
+                // Đếm số lần xuất hiện tên này để thêm hậu tố
+                int count = 0;
+                for (int j = 0; j < i; j++) {
+                    if (testNames.get(j).equals(name)) count++;
+                }
+                String displayName = count == 0 ? name : name + " (" + (count + 1) + ")";
+                dataset.addValue(times.get(i), "Thời gian chạy", displayName);
             }
 
             JFreeChart chart = ChartFactory.createBarChart(

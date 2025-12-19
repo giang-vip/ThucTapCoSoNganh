@@ -1,0 +1,43 @@
+////
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+         https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+////
+
+[#release-notes-2-25-3]
+== 2.25.3
+
+Release date:: 2025-12-15
+
+This patch release addresses issues detailed in the changelog below.
+In particular, it includes an important fix for xref:manual/appenders/network.adoc#SslConfiguration-attr-verifyHostName[the host name verification in SSL/TLS configuration].
+This is used by xref:manual/appenders/network.adoc#SocketAppender[Socket Appender].
+
+
+[#release-notes-2-25-3-changed]
+=== Changed
+
+* Optimize `DefaultThreadContextMap.getCopy()` performance by avoiding megamorphic calls in `HashMap` constructor (https://github.com/apache/logging-log4j2/issues/3935[3935], https://github.com/apache/logging-log4j2/pull/3939[3939])
+
+[#release-notes-2-25-3-fixed]
+=== Fixed
+
+* Fix GraalVM metadata for nested classes to use binary names instead of canonical names (https://github.com/apache/logging-log4j2/issues/3871[3871], https://github.com/apache/logging-log4j2/pull/3996[3996])
+* Fix failures caused by null `SslConfiguration` (https://github.com/apache/logging-log4j2/issues/3947[3947], https://github.com/apache/logging-log4j2/pull/3953[3953])
+* Fix incorrect handling of xref:manual/appenders/network.adoc#SslConfiguration-attr-verifyHostName[the host name verification in SSL/TLS configuration], which is used by xref:manual/appenders/network.adoc#SocketAppender[Socket Appender] when SSL/TLS is enabled (https://github.com/apache/logging-log4j2/pull/4002[4002])
+
+[#release-notes-2-25-3-removed]
+=== Removed
+
+* Remove the `com.github.spotbugs:spotbugs-annotations` dependency (https://github.com/apache/logging-log4j2/issues/3984[3984], https://github.com/apache/logging-log4j2/pull/3985[3985])

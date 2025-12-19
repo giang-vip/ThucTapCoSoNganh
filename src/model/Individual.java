@@ -24,7 +24,7 @@ public class Individual {
             }
         }
         // Áp dụng phạt nếu vượt trọng lượng
-        fitness = (totalWeight > problem.getMaxWeight()) ? totalValue - 100000 : totalValue;
+        fitness = (totalWeight > problem.getMaxWeight()) ? totalValue - 100000000 : totalValue;
     }
 
     // Phương thức clone để sao chép cá thể (sử dụng trong chọn lọc)
@@ -49,4 +49,28 @@ public class Individual {
     public void setGene(int index, int value) {
         genes[index] = value;
     }
+
+    // Chú thích đặc biệt: Hàm này giống như "cân tổng các món đồ đang chọn trong giỏ" – tính tổng trọng lượng các vật phẩm được chọn (genes[i] == 1)
+    public int getTotalWeight(KnapsackProblem problem) {
+        int totalWeight = 0;
+        int[] weights = problem.getWeights();
+        for (int i = 0; i < genes.length; i++) {
+            if (genes[i] == 1) {
+                totalWeight += weights[i];
+            }
+        }
+        return totalWeight;
+    }
+
+    // Chú thích đặc biệt: Hàm này giống như "liệt kê tên các món đồ đang cầm trong giỏ" – trả về chuỗi "Vật1 Vật3 Vật5" để dễ đọc
+    public String getSelectedItemsString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < genes.length; i++) {
+            if (genes[i] == 1) {
+                sb.append("Vật").append(i + 1).append(" ");
+            }
+        }
+        return sb.length() > 0 ? sb.toString().trim() : "Không chọn vật nào";
+    }
+
 }

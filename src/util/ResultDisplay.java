@@ -20,7 +20,7 @@ public class ResultDisplay {
                 "Thế hệ", "Fitness", "Vật được chọn", "Tổng giá trị", "Tổng KL", "KL/Max", "Cải thiện?", "Stagnation");
         System.out.println("─".repeat(140));
 
-        int maxWeight = problem.getMaxWeight();
+        double maxWeight = problem.getMaxWeight();
 
         for (int i = 0; i < ga.getGenerationLog().size(); i++) {
             int gen = ga.getGenerationLog().get(i);

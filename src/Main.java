@@ -1,6 +1,8 @@
 // Lớp chính để chạy chương trình, nhập dữ liệu và khởi chạy GA
 import input.KnapsackRunner;
 import exception.InputHandler;
+import util.FitnessChart;
+
 import java.util.Scanner;
 
 public class Main {
@@ -21,22 +23,23 @@ public class Main {
             System.out.println("1 → Nhập tay hoàn toàn (giá trị + trọng lượng từng món)");
             System.out.println("2 → Nhập thông số cơ bản → tự động sinh ngẫu nhiên 2 mảng");
             System.out.println("3 → Nhập thông số từ file ");
+            System.out.println("4 → So sánh bộ dữ liệu đã chạy trong file Ecxel ");
             System.out.println("0 → Thoát chương trình");
             System.out.println("═".repeat(68));
 
-            choice = InputHandler.nhapSoDuong("→ Nhập lựa chọn của bạn (0-3): ");
+            choice = InputHandler.nhapSoDuong("→ Nhập lựa chọn của bạn (0-4): ");
 
             switch (choice) {
 
                 case 1 -> KnapsackRunner.chayCheDoNhapTay();
                 case 2 -> KnapsackRunner.chayCheDoSinhNgauNhien();
                 case 3 -> KnapsackRunner.chayCheDoDocTuFile();
-
+                case 4 -> FitnessChart.showTimeComparisonChart(); // Gọi hàm vẽ biểu đồ so sánh
                 default -> System.out.println("Lựa chọn không hợp lệ! Vui lòng chọn lại.");
             }
 
             // Dừng một chút để người dùng đọc kết quả trước khi về menu
-            if (choice == 1 || choice == 2 ||choice == 3) {
+            if (choice == 1 || choice == 2 ||choice == 3||choice == 4) {
                 System.out.println("\nNhấn Enter để trở về menu chính...");
                 sc.nextLine();
             }

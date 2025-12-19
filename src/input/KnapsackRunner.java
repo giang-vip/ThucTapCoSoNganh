@@ -11,10 +11,7 @@ import genetic.implement.RankThresholdSelection;
 import genetic.implement.UniformCrossover;
 import model.KnapsackProblem;
 import model.Population;
-import util.DataGenerator;
-import util.FitnessChart;
-import util.Logger;
-import util.ResultDisplay;
+import util.*;
 
 public class KnapsackRunner {
     // --------------------------------------------------------------------
@@ -41,7 +38,7 @@ public class KnapsackRunner {
         }
 
         // Chạy GA với dữ liệu vừa nhập
-        runGA(soLuongCaThe, soLuongVat, maxWeight, giaTri, khoiLuong);
+        runGA(soLuongCaThe, soLuongVat, maxWeight, giaTri, khoiLuong,"NhapTay_n" + soLuongVat + "_W" + maxWeight);
     }
 
     // --------------------------------------------------------------------
@@ -60,7 +57,7 @@ public class KnapsackRunner {
         System.out.println("Đã sinh ngẫu nhiên " + soLuongVat + " vật phẩm thành công!\n");
 
         // Chạy GA với dữ liệu ngẫu nhiên
-        runGA(soLuongCaThe, soLuongVat, maxWeight, giaTri, khoiLuong);
+        runGA(soLuongCaThe, soLuongVat, maxWeight, giaTri, khoiLuong,"NgauNhien_n" + soLuongVat + "_W" + maxWeight);
     }
 
     // --------------------------------------------------------------------
@@ -73,7 +70,7 @@ public class KnapsackRunner {
 
         try (java.util.Scanner scanner = new java.util.Scanner(new java.io.File(duongDanFile))) {
 
-            // Dòng 1: số lượng đồ vật + sức chứa túi
+            // Dòng 1: số lượng cá thể + sức chứa túi
             int soLuongCaThe = scanner.nextInt();
             int maxWeight    = scanner.nextInt();
             scanner.nextLine(); // bỏ qua phần còn lại của dòng 1
@@ -95,19 +92,49 @@ public class KnapsackRunner {
                 khoiLuong[i] = Integer.parseInt(weightStr[i]);
             }
 
-            // HIỂN THỊ LẠI DỮ LIỆU ĐÃ ĐỌC ĐƯỢC (SIÊU CHUYÊN NGHIỆP)
-//            System.out.println("\nĐỌC FILE THÀNH CÔNG TỪ: " + duongDanFile);
-//            System.out.println("════════════════════════════════════════════════════════════");
-//            System.out.println("   • Số lượng cá thể trong quần thể : " + soLuongCaThe);
-//            System.out.println("   • Số lượng vật phẩm (n)          : " + soLuongVat);
-//            System.out.println("   • Sức chứa tối đa của túi        : " + maxWeight);
-//            System.out.println("   • Danh sách trọng lượng             : " + java.util.Arrays.toString(khoiLuong));
-//            System.out.println("   • Danh sách giá trị          : " + java.util.Arrays.toString(giaTri));
-//            System.out.println("════════════════════════════════════════════════════════════\n");
+            // === KIỂM TRA DỮ LIỆU ĐẦU VÀO ĐỂ TRÁNH SAI LOGIC (SIÊU QUAN TRỌNG!!!) ===
+            // Ví dụ cuộc sống đơn giản: Giống như kiểm tra nguyên liệu nấu phở không được có "thịt -5kg" hay "nước dùng -10 lít" – phải báo lỗi ngay!
+            boolean coLoi = false;
 
+            // Kiểm tra số lượng cá thể và sức chứa túi phải > 0
+            if (soLuongCaThe <= 0) {
+                System.out.println("LỖI: Số lượng cá thể phải lớn hơn 0! Hiện tại: " + soLuongCaThe);
+                coLoi = true;
+            }
+            if (maxWeight < 0) {
+                System.out.println("LỖI: Sức chứa túi phải ≥ 0! Hiện tại: " + maxWeight);
+                coLoi = true;
+            }
 
+            // Kiểm tra giá trị phải ≥ 0 (không âm)
+            for (int i = 0; i < giaTri.length; i++) {
+                if (giaTri[i] < 0) {
+                    System.out.println("LỖI: Giá trị vật phẩm " + (i+1) + " không được âm! Hiện tại: " + giaTri[i]);
+                    coLoi = true;
+                }
+            }
+
+            // Kiểm tra trọng lượng phải > 0 (không âm và không bằng 0 – vì vật phẩm trọng lượng 0 vô nghĩa)
+            for (int i = 0; i < khoiLuong.length; i++) {
+                if (khoiLuong[i] <= 0) {
+                    System.out.println("LỖI: Trọng lượng vật phẩm " + (i+1) + " phải lớn hơn 0! Hiện tại: " + khoiLuong[i]);
+                    coLoi = true;
+                }
+            }
+
+            // Nếu có lỗi → dừng không chạy GA
+            if (coLoi) {
+                System.out.println("\nDỮ LIỆU ĐẦU VÀO KHÔNG HỢP LỆ – KHÔNG THỂ CHẠY THUẬT TOÁN!");
+                System.out.println("Vui lòng sửa file dữ liệu và thử lại.\n");
+                return; // Dừng hàm, không chạy GA
+            }
+
+            // Nếu OK → hiển thị lại dữ liệu và chạy GA
+            System.out.println("\nĐỌC FILE THÀNH CÔNG TỪ: " + duongDanFile);
+            String fileName = new java.io.File(duongDanFile).getName(); // Lấy tên file
+            String testName = fileName.substring(0, fileName.lastIndexOf('.')); // Bỏ đuôi .txt → "5item"
             // Chạy GA như bình thường
-            runGA(soLuongCaThe, soLuongVat, maxWeight, giaTri, khoiLuong);
+            runGA(soLuongCaThe, soLuongVat, maxWeight, giaTri, khoiLuong,testName);
 
         } catch (java.io.FileNotFoundException e) {
             System.out.println("KHÔNG TÌM THẤY FILE: " + duongDanFile);
@@ -137,7 +164,8 @@ public class KnapsackRunner {
     // --------------------------------------------------------------------
     // HÀM CHUNG: TẠO + CHẠY THUẬT TOÁN DI TRUYỀN (giữ nguyên toàn bộ khởi tạo)
     // --------------------------------------------------------------------
-    private static void runGA(int soLuongCaThe, int soLuongVat,int maxWeight, int[] giaTri, int[] khoiLuong) {
+    private static void runGA(int soLuongCaThe, int soLuongVat,int maxWeight, int[] giaTri, int[] khoiLuong,String testName) {
+        long startTime = System.currentTimeMillis(); // Bắt đầu đo thời gian (như bấm đồng hồ bấm giờ nấu ăn)
 
         // Hiển thị thông tin bài toán (dùng class cũ của bạn)
         DataGenerator.displayProblem(giaTri, khoiLuong, maxWeight);
@@ -149,7 +177,7 @@ public class KnapsackRunner {
         Population population = new Population(soLuongCaThe, soLuongVat, problem);
 
         // Tạo điều kiện dừng
-        StoppingCriteria stoppingCriteria = new StoppingCriteria(1000, 100);
+        StoppingCriteria stoppingCriteria = new StoppingCriteria(10000, 1000);
 
         // Tạo các operator (giữ nguyên như code cũ của bạn)
         ISelectionOperator selectionOp = new RankThresholdSelection(0.2);
@@ -177,6 +205,25 @@ public class KnapsackRunner {
 
         Logger.logFullResult(problem, ga, ga.getStoppingCriteria().getCurrentGeneration());
         // DÒNG THẦN THÁNH – VẼ ĐỒ THỊ ĐẸP LUNG LINH
-        FitnessChart.showChart(ga);
+        FitnessChart.showChart(ga,testName);
+
+        long endTime = System.currentTimeMillis();
+        long timeMs = endTime - startTime; // Thời gian chạy (ms)
+
+        // MỚI – lấy fitness tốt nhất thực sự (best ever) – luôn dương nếu có giải khả thi
+        double bestFitness = ga.getBestFitnessLog().stream()
+                .mapToDouble(Double::doubleValue)
+                .max()
+                .orElse(0.0);
+        int convergenceGen = ga.getGenerationLog().get(ga.getGenerationLog().size() - 1); // Thế hệ cuối
+
+        // === THÊM MỚI: GHI TỰ ĐỘNG VÀO EXCEL (NHƯ GHI NHẬT KÝ NẤU ĂN) ===
+        ExcelWriter.appendResultToExcel(testName, bestFitness, timeMs, convergenceGen);
+
+        System.out.println("=== KẾT QUẢ ĐÃ GHI TỰ ĐỘNG VÀO EXCEL ===");
+        System.out.println("→ Bộ dữ liệu: " + testName);
+        System.out.println("→ Fitness: " + bestFitness);
+        System.out.println("→ Thời gian: " + timeMs + " ms");
+        System.out.println("→ Thế hệ: " + convergenceGen);
     }
 }

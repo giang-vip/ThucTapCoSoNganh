@@ -13,7 +13,7 @@ public class Individual {
     }
 
     // Phương thức tính toán fitness dựa trên dữ liệu bài toán
-    // Nếu tổng khối lượng vượt quá maxWeight, phạt bằng cách trừ 100000
+    // Nếu tổng khối lượng vượt quá maxWeight, phạt bằng cách trừ 100000000
     public void calculateFitness(KnapsackProblem problem) {
         int totalValue = 0;  // Tổng giá trị
         int totalWeight = 0; // Tổng khối lượng
@@ -24,7 +24,11 @@ public class Individual {
             }
         }
         // Áp dụng phạt nếu vượt trọng lượng
-        fitness = (totalWeight > problem.getMaxWeight()) ? totalValue - 100000000 : totalValue;
+        if (totalWeight > problem.getMaxWeight()) {
+            fitness = (int) (totalValue - 100000000);
+        } else {
+            fitness = totalValue;
+        }
     }
 
     // Phương thức clone để sao chép cá thể (sử dụng trong chọn lọc)

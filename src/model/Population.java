@@ -18,10 +18,24 @@ public class Population {
         Random random = new Random();
         for (int i = 0; i < size; i++) {
             Individual ind = new Individual(numItems);
-            for (int j = 0; j < numItems; j++) {
-                // Khởi tạo ngẫu nhiên genes (0 hoặc 1)
-                ind.setGene(j, random.nextInt(2));
+            // --- CÁCH SỬA MỚI: KHỞI TẠO THÔNG MINH (SMART INITIALIZATION) ---
+            // Tạo một danh sách chỉ mục ngẫu nhiên để duyệt các vật phẩm không theo thứ tự
+            List<Integer> indexes = new ArrayList<>();
+            for (int k = 0; k < numItems; k++) indexes.add(k);
+            java.util.Collections.shuffle(indexes); // Tráo đổi thứ tự lấy đồ
+
+            int currentWeight = 0;
+
+            for (int j : indexes) {
+                // Chỉ lấy vật phẩm nếu túi còn đủ chỗ chứa
+                if (random.nextDouble() < 0.2 && (currentWeight + problem.getWeights()[j] <= problem.getMaxWeight())) {
+                    ind.setGene(j, 1);
+                    currentWeight += problem.getWeights()[j];
+                } else {
+                    ind.setGene(j, 0);
+                }
             }
+            // ---------------------------------------------------------------
             individuals.add(ind);
         }
         // Tính fitness cho tất cả cá thể ban đầu

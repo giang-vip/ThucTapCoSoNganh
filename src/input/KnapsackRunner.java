@@ -182,7 +182,7 @@ public class KnapsackRunner {
         // Tạo các operator (giữ nguyên như code cũ của bạn)
         ISelectionOperator selectionOp = new RankThresholdSelection(0.2);
         ICrossoverOperator crossoverOp = new UniformCrossover(20);
-        IMutationOperator mutationOp  = new BitFlipMutation(0.1);
+        IMutationOperator mutationOp  = new BitFlipMutation(0.005);
 
         // Tạo và chạy GA
         GeneticAlgorithm ga = new GeneticAlgorithm(population, stoppingCriteria, selectionOp, crossoverOp, mutationOp);
